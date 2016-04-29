@@ -1,5 +1,5 @@
-var path = require('path');
-var webpack = require('webpack');
+var path = require('path')
+var webpack = require('webpack')
 
 module.exports = {
   devtool: 'eval',
@@ -11,8 +11,8 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/static/'
+    filename: 'app.js',
+    publicPath: '/'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
@@ -24,4 +24,4 @@ module.exports = {
       include: path.join(__dirname, 'src')
     }]
   }
-};
+}
