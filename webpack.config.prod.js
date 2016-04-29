@@ -1,0 +1,26 @@
+var webpack = require('webpack')
+var precss = require('precss')
+var autoprefixer = require('autoprefixer')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var common = require('./webpack.config.common')
+
+module.exports = {
+  devtool: 'source-map',
+  entry: './src/index',
+  output: common.output,
+  plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: JSON.stringify('production') }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: { warnings: false },
+      comments: false
+    }),
+    new ExtractTextPlugin('app.css')
+  ],
+  module: common.module,
+  postcss: function () {
+    return [ autoprefixer, precss ]
+  }
+}
