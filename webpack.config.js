@@ -8,7 +8,7 @@ var SRC = path.join(__dirname, 'src')
 
 module.exports = {
   port: PORT,
-  devtool: 'eval',
+  devtool: 'cheap-module-eval-source-map',
   entry: [
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:' + PORT,
