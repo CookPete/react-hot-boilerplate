@@ -1,7 +1,10 @@
 var path = require('path')
 var webpack = require('webpack')
+var precss = require('precss')
 
 var PORT = 3000
+var DIST = path.join(__dirname, 'dist')
+var SRC = path.join(__dirname, 'src')
 
 module.exports = {
   port: PORT,
@@ -13,7 +16,7 @@ module.exports = {
     './src/index'
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: DIST,
     filename: 'app.js',
     publicPath: '/'
   },
@@ -24,7 +27,18 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       loaders: ['babel'],
-      include: path.join(__dirname, 'src')
+      include: SRC
+    }, {
+      test: /\.css$/,
+      loaders: ['style', 'css?modules', 'postcss'],
+      include: SRC
+    }, {
+      test: /\.css$/,
+      loaders: ['style?insertAt=top', 'css'],
+      include: path.join(__dirname, 'node_modules', 'normalize.css')
     }]
+  },
+  postcss: function () {
+    return [ precss ]
   }
 }
