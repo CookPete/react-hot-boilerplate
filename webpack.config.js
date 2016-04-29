@@ -1,11 +1,14 @@
 var path = require('path')
 var webpack = require('webpack')
 
+var PORT = 3000
+
 module.exports = {
+  port: PORT,
   devtool: 'eval',
   entry: [
     'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:3000',
+    'webpack-dev-server/client?http://localhost:' + PORT,
     'webpack/hot/only-dev-server',
     './src/index'
   ],
