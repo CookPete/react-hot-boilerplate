@@ -24,7 +24,7 @@ module.exports = {
       include: SRC
     }, {
       test: /\.css$/,
-      loader: styleLoaders(['style', 'css?modules&sourceMap', 'postcss']),
+      loader: styleLoaders(['style', 'css?modules&sourceMap&localIdentName=[hash:base64:3]', 'postcss']),
       include: SRC
     }, {
       test: /\.css$/,
