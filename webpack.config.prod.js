@@ -7,6 +7,7 @@ var common = require('./webpack.config.common')
 module.exports = {
   devtool: 'source-map',
   entry: './src/index',
+  module: common.module,
   output: common.output,
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -19,7 +20,6 @@ module.exports = {
     }),
     new ExtractTextPlugin('app.css')
   ],
-  module: common.module,
   postcss: function () {
     return [ autoprefixer, precss ]
   }

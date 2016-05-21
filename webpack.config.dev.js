@@ -13,11 +13,11 @@ module.exports = {
     'webpack/hot/only-dev-server',
     './src/index'
   ],
+  module: common.module,
   output: common.output,
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
-  module: common.module,
   postcss: function () {
     return [ precss ]
   }
