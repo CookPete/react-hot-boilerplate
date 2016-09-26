@@ -1,14 +1,14 @@
-var webpack = require('webpack')
-var precss = require('precss')
-var autoprefixer = require('autoprefixer')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var common = require('./config.common')
+import webpack from 'webpack'
+import precss from 'precss'
+import autoprefixer from 'autoprefixer'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import { module, output } from './config.common'
 
-module.exports = {
+export default {
   devtool: 'source-map',
   entry: './src/index',
-  module: common.module,
-  output: common.output,
+  module,
+  output,
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({

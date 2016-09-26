@@ -1,13 +1,23 @@
-var webpack = require('webpack')
-var WebpackDevServer = require('webpack-dev-server')
-var config = require('./webpack/config.dev')
+import webpack from 'webpack'
+import Server from 'webpack-dev-server'
 
-new WebpackDevServer(webpack(config), {
+import config from './webpack/config.dev.babel'
+import { port } from './webpack/config.common'
+
+const options = {
   publicPath: config.output.publicPath,
   hot: true,
   historyApiFallback: true,
-  stats: { colors: true }
-}).listen(config.port, 'localhost', function (err, result) {
-  if (err) throw err
-  console.log('Listening at http://localhost:' + config.port)
+  stats: {
+    colors: true
+  }
+}
+
+const server = new Server(webpack(config), options)
+
+server.listen(port, 'localhost', (err, result) => {
+  if (err) {
+    throw err
+  }
+  console.log('Listening at http://localhost:' + port)
 })
