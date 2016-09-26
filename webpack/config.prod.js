@@ -2,7 +2,7 @@ var webpack = require('webpack')
 var precss = require('precss')
 var autoprefixer = require('autoprefixer')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var common = require('./webpack.config.common')
+var common = require('./config.common')
 
 module.exports = {
   devtool: 'source-map',

@@ -1,9 +1,10 @@
 var path = require('path')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-var PATH_DIST = path.join(__dirname, 'dist')
-var PATH_SRC = path.join(__dirname, 'src')
-var PATH_NORMALIZE = path.join(__dirname, 'node_modules', 'normalize.css')
+var PATH_ROOT = path.join(__dirname, '..')
+var PATH_DIST = path.join(PATH_ROOT, 'dist')
+var PATH_SRC = path.join(PATH_ROOT, 'src')
+var PATH_NORMALIZE = path.join(PATH_ROOT, 'node_modules', 'normalize.css')
 
 module.exports = {
   module: {

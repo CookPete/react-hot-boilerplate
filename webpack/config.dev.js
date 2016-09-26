@@ -1,6 +1,6 @@
 var webpack = require('webpack')
 var precss = require('precss')
-var common = require('./webpack.config.common')
+var common = require('./config.common')
 
 var PORT = 3000
 
