@@ -53,6 +53,16 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0",
+      "react"
+    ],
+    "plugins": [
+      "react-hot-loader/babel"
+    ]
+  },
   "standard": {
     "parser": "babel-eslint"
   }
