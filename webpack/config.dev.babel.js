@@ -1,6 +1,6 @@
 import webpack from 'webpack'
 import precss from 'precss'
-import { port, module, output } from './config.common'
+import { port, module, output, plugins } from './config.common'
 
 export default {
   devtool: 'cheap-module-eval-source-map',
@@ -13,6 +13,7 @@ export default {
   module,
   output,
   plugins: [
+    ...plugins,
     new webpack.HotModuleReplacementPlugin()
   ],
   postcss: function () {

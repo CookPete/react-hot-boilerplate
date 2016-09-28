@@ -2,7 +2,7 @@ import webpack from 'webpack'
 import precss from 'precss'
 import autoprefixer from 'autoprefixer'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import { module, output } from './config.common'
+import { module, output, plugins } from './config.common'
 
 export default {
   devtool: 'source-map',
@@ -10,6 +10,7 @@ export default {
   module,
   output,
   plugins: [
+    ...plugins,
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify('production') }
