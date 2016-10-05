@@ -21,11 +21,11 @@ export const module = {
     include: PATH_SRC
   }, {
     test: /\.css$/,
-    loader: styleLoader(['style', 'css?modules&sourceMap&localIdentName=[hash:base64:3]', 'postcss']),
+    loader: styleLoader('style!css?modules&sourceMap&localIdentName=[hash:base64:3]!postcss'),
     include: PATH_SRC
   }, {
     test: /\.css$/,
-    loader: styleLoader(['style?insertAt=top', 'css?{sourceMap:true,discardComments:{removeAll:true}}']),
+    loader: styleLoader('style?insertAt=top!css?{sourceMap:true,discardComments:{removeAll:true}}'),
     include: PATH_NORMALIZE
   }]
 }
@@ -59,7 +59,8 @@ export const output = {
 
 function styleLoader (loaders) {
   if (process.env.NODE_ENV === 'production') {
-    return extract(loaders[0], loaders.slice(1).join('!'))
+    const [ first, ...rest ] = loaders.split('!')
+    return extract(first, rest.join('!'))
   }
-  return loaders.join('!')
+  return loaders
 }
