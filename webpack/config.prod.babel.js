@@ -1,8 +1,6 @@
 import webpack from 'webpack'
-import precss from 'precss'
-import autoprefixer from 'autoprefixer'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import { module, output, plugins } from './config.common'
+import { module, output, plugins, postcss } from './config.common'
 
 export default {
   devtool: 'source-map',
@@ -21,7 +19,5 @@ export default {
     }),
     new ExtractTextPlugin('app.css')
   ],
-  postcss: function () {
-    return [ autoprefixer, precss ]
-  }
+  postcss
 }

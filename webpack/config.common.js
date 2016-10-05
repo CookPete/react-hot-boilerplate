@@ -1,6 +1,10 @@
 import { join } from 'path'
 import { extract } from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import precss from 'precss'
+import autoprefixer from 'autoprefixer'
+
+const PRODUCTION = process.env.NODE_ENV === 'production'
 
 const PATH_ROOT = join(__dirname, '..')
 const PATH_DIST = join(PATH_ROOT, 'dist')
@@ -24,6 +28,17 @@ export const module = {
     loader: styleLoader(['style?insertAt=top', 'css']),
     include: PATH_NORMALIZE
   }]
+}
+
+export function postcss (webpack) {
+  const array = [
+    precss({
+      import: {
+        addDependencyTo: webpack
+      }
+    })
+  ]
+  return PRODUCTION ? array.concat(autoprefixer) : array
 }
 
 export const plugins = [
