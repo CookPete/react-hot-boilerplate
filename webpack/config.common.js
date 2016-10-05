@@ -25,7 +25,7 @@ export const module = {
     include: PATH_SRC
   }, {
     test: /\.css$/,
-    loader: styleLoader(['style?insertAt=top', 'css']),
+    loader: styleLoader(['style?insertAt=top', 'css?{sourceMap:true,discardComments:{removeAll:true}}']),
     include: PATH_NORMALIZE
   }]
 }
