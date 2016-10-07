@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gaearon/react-hot-boilerplate.git"
+    "url": "https://github.com/cookpete/react-hot-boilerplate.git"
   },
   "keywords": [
     "react",
@@ -23,12 +23,12 @@
     "edit",
     "webpack"
   ],
-  "author": "Dan Abramov <dan.abramov@me.com> (http://github.com/gaearon)",
+  "author": "Pete Cook <pete@cookpete.com> (http://github.com/cookpete)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gaearon/react-hot-boilerplate/issues"
+    "url": "https://github.com/cookpete/react-hot-boilerplate/issues"
   },
-  "homepage": "https://github.com/gaearon/react-hot-boilerplate",
+  "homepage": "https://github.com/cookpete/react-hot-boilerplate",
   "devDependencies": {
     "autoprefixer": "^6.4.1",
     "babel-cli": "^6.9.0",
