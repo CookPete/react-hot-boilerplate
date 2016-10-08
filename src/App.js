@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import 'normalize.css/normalize.css'
+import './reset.css'
 import styles from './App.css'
 
 export default class App extends Component {

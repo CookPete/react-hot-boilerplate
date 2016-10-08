@@ -10,7 +10,6 @@ const PATH_ROOT = join(__dirname, '..')
 const PATH_DIST = join(PATH_ROOT, 'dist')
 const PATH_SRC = join(PATH_ROOT, 'src')
 const PATH_INDEX = join(PATH_ROOT, 'index.html')
-const PATH_NORMALIZE = join(PATH_ROOT, 'node_modules', 'normalize.css')
 
 export const port = 3000
 
@@ -23,10 +22,6 @@ export const module = {
     test: /\.css$/,
     loader: styleLoader('style!css?modules&sourceMap&localIdentName=[hash:base64:3]!postcss'),
     include: PATH_SRC
-  }, {
-    test: /\.css$/,
-    loader: styleLoader('style?insertAt=top!css?{sourceMap:true,discardComments:{removeAll:true}}'),
-    include: PATH_NORMALIZE
   }]
 }
 
