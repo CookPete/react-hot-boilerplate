@@ -9,6 +9,7 @@ const PRODUCTION = process.env.NODE_ENV === 'production'
 const PATH_ROOT = join(__dirname, '..')
 const PATH_DIST = join(PATH_ROOT, 'dist')
 const PATH_SRC = join(PATH_ROOT, 'src')
+const PATH_ASSETS = join(PATH_ROOT, 'assets')
 const PATH_INDEX = join(PATH_ROOT, 'index.html')
 
 export const port = 3000
@@ -22,6 +23,10 @@ export const module = {
     test: /\.css$/,
     loader: styleLoader('style!css?modules&sourceMap&localIdentName=[hash:base64:3]!postcss'),
     include: PATH_SRC
+  }, {
+    test: /\.(png|jpg)$/,
+    loader: 'file?name=assets/[hash].[ext]',
+    include: PATH_ASSETS
   }]
 }
 
@@ -49,7 +54,7 @@ export const plugins = [
 export const output = {
   path: PATH_DIST,
   filename: 'app.js',
-  publicPath: '/'
+  publicPath: PRODUCTION ? '/' : `http://localhost:${port}/`
 }
 
 function styleLoader (loaders) {
