@@ -14,6 +14,8 @@ const PATH_INDEX = join(PATH_ROOT, 'index.html')
 
 export const port = 3000
 
+const localIdentName = PRODUCTION ? '[hash:base64:5]' : '[name]__[local]'
+
 export const module = {
   loaders: [{
     test: /\.js$/,
@@ -21,7 +23,7 @@ export const module = {
     include: PATH_SRC
   }, {
     test: /\.css$/,
-    loader: styleLoader('style!css?modules&sourceMap&localIdentName=[hash:base64:3]!postcss'),
+    loader: styleLoader(`style!css?modules&sourceMap&localIdentName=${localIdentName}!postcss`),
     include: PATH_SRC
   }, {
     test: /\.(png|jpg)$/,
