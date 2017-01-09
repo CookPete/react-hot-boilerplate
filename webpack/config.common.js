@@ -32,14 +32,8 @@ export const module = {
   }]
 }
 
-export function postcss (webpack) {
-  const array = [
-    precss({
-      import: {
-        addDependencyTo: webpack
-      }
-    })
-  ]
+export function postcss () {
+  const array = [ precss ]
   return PRODUCTION ? array.concat(autoprefixer) : array
 }
 
