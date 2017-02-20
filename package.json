@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Boilerplate for ReactJS project with hot code reloading",
   "scripts": {
-    "start": "babel-node server.js",
+    "start": "webpack-dev-server --config webpack/config.dev.babel.js",
     "lint": "standard --verbose | snazzy",
-    "build": "NODE_ENV=production webpack --config webpack/config.prod.babel.js",
+    "build": "NODE_ENV=production webpack -p --config webpack/config.prod.babel.js",
     "clean": "rm -rf dist"
   },
   "repository": {
@@ -39,7 +39,7 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "css-loader": "^0.26.1",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.22.0",
     "postcss-loader": "^1.2.1",
@@ -48,8 +48,8 @@
     "snazzy": "^5.0.0",
     "standard": "^8.1.0",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.16.1"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
   },
   "dependencies": {
     "react": "^15.3.2",

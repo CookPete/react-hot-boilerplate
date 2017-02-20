@@ -1,6 +1,6 @@
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import { module, output, plugins, postcss } from './config.common'
+import { module, output, plugins } from './config.common'
 
 export default {
   devtool: 'source-map',
@@ -9,15 +9,13 @@ export default {
   output,
   plugins: [
     ...plugins,
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': { NODE_ENV: JSON.stringify('production') }
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
     }),
     new webpack.optimize.UglifyJsPlugin({
-      compressor: { warnings: false },
+      sourceMap: true,
       comments: false
     }),
-    new ExtractTextPlugin('app.css')
-  ],
-  postcss
+    new ExtractTextPlugin({ filename: 'app.css' })
+  ]
 }

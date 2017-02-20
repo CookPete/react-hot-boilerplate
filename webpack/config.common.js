@@ -1,4 +1,5 @@
 import { join } from 'path'
+import webpack from 'webpack'
 import { extract } from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import precss from 'precss'
@@ -17,24 +18,23 @@ export const port = 3000
 const localIdentName = PRODUCTION ? '[hash:base64:5]' : '[name]__[local]'
 
 export const module = {
-  loaders: [{
+  rules: [{
     test: /\.js$/,
-    loader: 'babel',
+    loader: 'babel-loader',
     include: PATH_SRC
   }, {
     test: /\.css$/,
-    loader: styleLoader(`style!css?modules&sourceMap&localIdentName=${localIdentName}!postcss`),
+    use: styleLoader([
+      'style-loader',
+      `css-loader?modules&sourceMap&localIdentName=${localIdentName}`,
+      'postcss-loader'
+    ]),
     include: PATH_SRC
   }, {
     test: /\.(png|jpg)$/,
-    loader: 'file?name=assets/[hash].[ext]',
+    loader: 'file-loader?name=assets/[hash].[ext]',
     include: PATH_ASSETS
   }]
-}
-
-export function postcss () {
-  const array = [ precss ]
-  return PRODUCTION ? array.concat(autoprefixer) : array
 }
 
 export const plugins = [
@@ -43,6 +43,12 @@ export const plugins = [
     minify: {
       collapseWhitespace: true,
       quoteCharacter: '\''
+    }
+  }),
+  new webpack.LoaderOptionsPlugin({
+    options: {
+      context: PATH_ROOT,
+      postcss: PRODUCTION ? [ precss, autoprefixer ] : [ precss ]
     }
   })
 ]
@@ -55,8 +61,8 @@ export const output = {
 
 function styleLoader (loaders) {
   if (process.env.NODE_ENV === 'production') {
-    const [ first, ...rest ] = loaders.split('!')
-    return extract(first, rest.join('!'))
+    const [ fallback, ...use ] = loaders
+    return extract({ fallback, use })
   }
   return loaders
 }

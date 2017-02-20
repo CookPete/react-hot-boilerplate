@@ -1,5 +1,5 @@
 import webpack from 'webpack'
-import { port, module, output, plugins, postcss } from './config.common'
+import { port, module, output, plugins } from './config.common'
 
 export default {
   devtool: 'cheap-module-eval-source-map',
@@ -13,7 +13,16 @@ export default {
   output,
   plugins: [
     ...plugins,
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
   ],
-  postcss
+  devServer: {
+    port,
+    publicPath: output.publicPath,
+    hot: true,
+    historyApiFallback: true,
+    stats: {
+      colors: true
+    }
+  }
 }
