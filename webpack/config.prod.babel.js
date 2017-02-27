@@ -5,6 +5,12 @@ import { module, output, plugins } from './config.common'
 export default {
   devtool: 'source-map',
   entry: './src/index',
+  resolve: {
+    alias: {
+      'react': 'react-lite',
+      'react-dom': 'react-lite'
+    }
+  },
   module,
   output,
   plugins: [
