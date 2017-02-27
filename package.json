@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Boilerplate for ReactJS project with hot code reloading",
   "scripts": {
-    "start": "webpack-dev-server --config webpack/config.dev.babel.js",
+    "start": "webpack-dev-server",
     "lint": "standard --verbose | snazzy",
-    "build": "NODE_ENV=production webpack -p --config webpack/config.prod.babel.js",
+    "build": "NODE_ENV=production webpack -p --config webpack.production.babel.js",
     "clean": "rm -rf dist"
   },
   "repository": {

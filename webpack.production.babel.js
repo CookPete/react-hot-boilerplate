@@ -1,18 +1,18 @@
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import { module, output, plugins } from './config.common'
+import config, { plugins } from './webpack.config.babel'
 
 export default {
+  ...config,
   devtool: 'source-map',
   entry: './src/index',
   resolve: {
+    ...config.resolve,
     alias: {
       'react': 'react-lite',
       'react-dom': 'react-lite'
     }
   },
-  module,
-  output,
   plugins: [
     ...plugins,
     new webpack.LoaderOptionsPlugin({
