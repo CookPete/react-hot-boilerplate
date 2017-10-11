@@ -2,8 +2,6 @@ import { join } from 'path'
 import webpack from 'webpack'
 import { extract } from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import precss from 'precss'
-import autoprefixer from 'autoprefixer'
 
 const PORT = 3000
 const PRODUCTION = process.env.NODE_ENV === 'production'
@@ -21,12 +19,6 @@ export const plugins = [
     minify: {
       collapseWhitespace: true,
       quoteCharacter: '\''
-    }
-  }),
-  new webpack.LoaderOptionsPlugin({
-    options: {
-      context: __dirname,
-      postcss: PRODUCTION ? [ precss, autoprefixer ] : [ precss ]
     }
   })
 ]
