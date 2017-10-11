@@ -6,7 +6,7 @@ React Hot Boilerplate
 ```bash
 git clone https://github.com/CookPete/react-hot-boilerplate.git
 cd react-hot-boilerplate
-npm install
+npm install # or yarn
 npm start
 open http://localhost:3000
 ```
