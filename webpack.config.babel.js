@@ -69,6 +69,7 @@ export default {
     port: PORT,
     publicPath: PUBLIC_PATH,
     hot: true,
+    overlay: true,
     historyApiFallback: true,
     stats: {
       colors: true
