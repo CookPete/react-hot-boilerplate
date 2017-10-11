@@ -6,13 +6,6 @@ export default {
   ...config,
   devtool: 'source-map',
   entry: './src/index',
-  resolve: {
-    ...config.resolve,
-    alias: {
-      'react': 'react-lite',
-      'react-dom': 'react-lite'
-    }
-  },
   plugins: [
     ...plugins,
     new webpack.LoaderOptionsPlugin({
