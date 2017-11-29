@@ -5,10 +5,8 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 const PORT = 3000
 const PRODUCTION = process.env.NODE_ENV === 'production'
+const LOCAL_IDENT_NAME = PRODUCTION ? '[hash:base64:5]' : '[name]__[local]__[hash:base64:5]'
 const PUBLIC_PATH = PRODUCTION ? '/' : `http://localhost:${PORT}/`
-
-// Must match react-css-modules settings in package.json
-const LOCAL_IDENT_NAME = PRODUCTION ? '[hash:base64:5]' : '[name]__[local]'
 
 const PATH_DIST = join(__dirname, 'dist')
 const PATH_SRC = join(__dirname, 'src')
