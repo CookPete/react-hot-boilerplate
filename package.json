@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack/config.babel.js",
     "lint": "standard --verbose | snazzy",
-    "build": "webpack --config webpack/production.babel.js",
+    "build": "NODE_ENV=production webpack --config webpack/production.babel.js",
     "clean": "rm -rf dist"
   },
   "repository": {
@@ -49,7 +49,8 @@
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^4.12.0",
     "webpack-cli": "^3.0.3",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^3.1.4",
+    "webpack-stylish": "^0.1.8"
   },
   "dependencies": {
     "react": "^16.4.0",

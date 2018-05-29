@@ -1,17 +1,19 @@
 import { join } from 'path'
 import webpack from 'webpack'
-import { extract } from 'extract-text-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import Stylish from 'webpack-stylish'
 
 const PORT = 3000
 const PRODUCTION = process.env.NODE_ENV === 'production'
 const LOCAL_IDENT_NAME = PRODUCTION ? '[hash:base64:5]' : '[name]__[local]__[hash:base64:5]'
 const PUBLIC_PATH = PRODUCTION ? '/' : `http://localhost:${PORT}/`
 
-const PATH_DIST = join(__dirname, 'dist')
-const PATH_SRC = join(__dirname, 'src')
-const PATH_ASSETS = join(__dirname, 'assets')
-const PATH_INDEX = join(__dirname, 'index.html')
+const PATH_ROOT = join(__dirname, '..')
+const PATH_DIST = join(PATH_ROOT, 'dist')
+const PATH_SRC = join(PATH_ROOT, 'src')
+const PATH_ASSETS = join(PATH_ROOT, 'assets')
+const PATH_INDEX = join(PATH_ROOT, 'index.html')
 
 export const plugins = [
   new HtmlWebpackPlugin({
@@ -20,7 +22,8 @@ export const plugins = [
       collapseWhitespace: true,
       quoteCharacter: '\''
     }
-  })
+  }),
+  new Stylish()
 ]
 
 export default {
@@ -30,7 +33,7 @@ export default {
     'react-hot-loader/patch',
     `webpack-dev-server/client?http://localhost:${PORT}`,
     'webpack/hot/only-dev-server',
-    './src/index'
+    join(PATH_SRC, 'index')
   ],
   resolve: {
     alias: {
@@ -72,10 +75,9 @@ export default {
     hot: true,
     overlay: true,
     historyApiFallback: true,
-    stats: {
-      colors: true
-    }
+    stats: 'none'
   },
+  stats: 'none',
   performance: {
     hints: false
   }
@@ -83,8 +85,10 @@ export default {
 
 function styleLoader (loaders) {
   if (process.env.NODE_ENV === 'production') {
-    const [ fallback, ...use ] = loaders
-    return extract({ fallback, use })
+    return [
+      MiniCssExtractPlugin.loader,
+      ...loaders.slice(1)
+    ]
   }
   return loaders
 }
