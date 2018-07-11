@@ -2,12 +2,12 @@ import { join } from 'path'
 import webpack from 'webpack'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import Stylish from 'webpack-stylish'
 
 const PORT = 3000
 const PRODUCTION = process.env.NODE_ENV === 'production'
 const LOCAL_IDENT_NAME = PRODUCTION ? '[hash:base64:5]' : '[name]__[local]__[hash:base64:5]'
 const PUBLIC_PATH = PRODUCTION ? '/' : `http://localhost:${PORT}/`
+const STYLE_LOADER = PRODUCTION ? MiniCssExtractPlugin.loader : 'style-loader'
 
 const PATH_ROOT = join(__dirname, '..')
 const PATH_DIST = join(PATH_ROOT, 'dist')
@@ -22,8 +22,7 @@ export const plugins = [
       collapseWhitespace: true,
       quoteCharacter: '\''
     }
-  }),
-  new Stylish()
+  })
 ]
 
 export default {
@@ -47,11 +46,11 @@ export default {
       include: PATH_SRC
     }, {
       test: /\.css$/,
-      use: styleLoader([
-        'style-loader',
+      use: [
+        STYLE_LOADER,
         `css-loader?modules&sourceMap&localIdentName=${LOCAL_IDENT_NAME}`,
         'postcss-loader'
-      ]),
+      ],
       include: PATH_SRC
     }, {
       test: /\.(png|jpg)$/,
@@ -74,21 +73,9 @@ export default {
     publicPath: PUBLIC_PATH,
     hot: true,
     overlay: true,
-    historyApiFallback: true,
-    stats: 'none'
+    historyApiFallback: true
   },
-  stats: 'none',
   performance: {
     hints: false
   }
-}
-
-function styleLoader (loaders) {
-  if (process.env.NODE_ENV === 'production') {
-    return [
-      MiniCssExtractPlugin.loader,
-      ...loaders.slice(1)
-    ]
-  }
-  return loaders
 }
