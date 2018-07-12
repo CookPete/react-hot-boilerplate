@@ -13,7 +13,7 @@ const PATH_ROOT = join(__dirname, '..')
 const PATH_DIST = join(PATH_ROOT, 'dist')
 const PATH_SRC = join(PATH_ROOT, 'src')
 const PATH_ASSETS = join(PATH_ROOT, 'assets')
-const PATH_INDEX = join(PATH_ROOT, 'index.html')
+const PATH_INDEX = join(PATH_SRC, 'index.html')
 
 export const plugins = [
   new HtmlWebpackPlugin({
