@@ -43,7 +43,10 @@ export default {
     rules: [{
       test: /\.js$/,
       loader: 'babel-loader',
-      include: PATH_SRC
+      include: PATH_SRC,
+      query: {
+        presets: [['@babel/preset-env', { modules: false }]]
+      }
     }, {
       test: /\.css$/,
       use: [
