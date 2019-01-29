@@ -28,12 +28,7 @@ export const plugins = [
 export default {
   mode: 'development',
   devtool: 'cheap-module-eval-source-map',
-  entry: [
-    'react-hot-loader/patch',
-    `webpack-dev-server/client?http://localhost:${PORT}`,
-    'webpack/hot/only-dev-server',
-    join(PATH_SRC, 'index')
-  ],
+  entry: join(PATH_SRC, 'index'),
   resolve: {
     alias: {
       assets: PATH_ASSETS

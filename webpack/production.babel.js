@@ -7,7 +7,6 @@ export default {
   ...config,
   mode: 'production',
   devtool: 'source-map',
-  entry: './src/index',
   plugins: [
     ...plugins,
     new MiniCssExtractPlugin({
