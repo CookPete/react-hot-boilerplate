@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { hot } from 'react-hot-loader'
-
-import './reset.css'
 import styles from './App.css'
 
 class App extends Component {
