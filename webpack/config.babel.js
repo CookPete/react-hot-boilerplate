@@ -71,7 +71,8 @@ export default {
     publicPath: PUBLIC_PATH,
     hot: true,
     overlay: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    stats: 'minimal'
   },
   performance: {
     hints: false
