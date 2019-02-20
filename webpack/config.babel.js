@@ -31,7 +31,8 @@ export default {
   entry: join(PATH_SRC, 'index'),
   resolve: {
     alias: {
-      assets: PATH_ASSETS
+      assets: PATH_ASSETS,
+      'react-dom': '@hot-loader/react-dom'
     }
   },
   module: {
